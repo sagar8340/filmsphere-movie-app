@@ -47,7 +47,7 @@ const Home = ({ watchlist, setWatchlist, mode, setMode }) => {
 
 
       {/* Upcoming movieCard list here-------- */}
-      < h1 className="ml-5 mt-6 pb-4 text-2xl font-bold" > Upcoming</h1 >
+      < h1 className="ml-5 mt-6 pb-4 text-2xl font-bold" >Trending movies</h1 >
       <div className={`${mode === 'light' ? " bg-white text-black" : "bg-black text-white"} grid grid-cols-2 gap-2 justify-items-center h-auto w-[99%] mx-auto
         sm:grid-cols-3
         md:grid-cols-4
