@@ -37,4 +37,4 @@ app.get('/genre', (req, res) => {
 
 app.listen(5000, () => {
     console.log('server started');
-})
+}) 
