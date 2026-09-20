@@ -20,7 +20,7 @@ const Home = ({ watchlist, setWatchlist, mode, setMode }) => {
     .catch((error)=>console.log(error))
     
   //   genre data fetching... here
- fetch('http://localhost:5000/genre')
+ fetch('https://filmsphere-movie-app-el6c.onrender.com/genre')
       .then((res) => res.json())
       .then((genre_data) => setGenrelist(genre_data.genres))
       .catch(error => console.log(error))
