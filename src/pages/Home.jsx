@@ -4,6 +4,7 @@ import MovieCard from "../components/MovieCard";
 import { fetch_movie_list } from "../MovieApi";
 import Slider_baner from "../components/Slider_baner";
 import Footer from "../components/Footer";
+import Spinner from "../components/Spinner";
 
 
 const Home = ({ watchlist, setWatchlist, mode, setMode }) => {
@@ -17,10 +18,10 @@ const Home = ({ watchlist, setWatchlist, mode, setMode }) => {
     fetch_movie_list().then((movieData) => {
       setMovielist(movieData)
     })
-    .catch((error)=>console.log(error))
-    
-  //   genre data fetching... here
- fetch('https://filmsphere-movie-app-el6c.onrender.com/genre')
+      .catch((error) => console.log(error))
+
+    //   genre data fetching... here
+    fetch('https://filmsphere-movie-app-el6c.onrender.com/genre')
       .then((res) => res.json())
       .then((genre_data) => setGenrelist(genre_data.genres))
       .catch(error => console.log(error))
@@ -40,9 +41,15 @@ const Home = ({ watchlist, setWatchlist, mode, setMode }) => {
       <Navbar text={text} setText={setText} mode={mode} setMode={setMode} />
 
       {/* movie poster section -------- */}
-      <div className=" w-[89%] h-[66vh] overflow-hidden mx-auto mt-3 
+      <div className=" w-[89%] h-[40vh] overflow-hidden mx-auto mt-3 
       md:h-[85vh] ">
-        <Slider_baner movielist={movielist} />
+        {movielist.length === 0 ? (
+          <div className="col-span-full w-full py-16 flex items-center justify-center">
+            <Spinner />
+          </div>
+        ) : (
+          <Slider_baner movielist={movielist} />
+        )}
       </div >
 
 
@@ -52,9 +59,24 @@ const Home = ({ watchlist, setWatchlist, mode, setMode }) => {
         sm:grid-cols-3
         md:grid-cols-4
         lg:grid-cols-6`}>
-        {(text.trim().length >= 2 ? filterMovies : movielist).map(movieitem => {
-          return <MovieCard key={movieitem.id} genres={genrelist} movie={movieitem} watchlist={watchlist} setWatchlist={setWatchlist} type='home' />
-        })}
+
+        {movielist.length === 0 ? (
+          <div className="col-span-full w-full py-16 flex items-center justify-center">
+            <Spinner />
+          </div>
+        ) : (
+          (text.trim().length >= 2 ? filterMovies : movielist).map((movieitem) => (
+            <MovieCard
+              key={movieitem.id}
+              genres={genrelist}
+              movie={movieitem}
+              watchlist={watchlist}
+              setWatchlist={setWatchlist}
+              type="home"
+            />
+          ))
+        )}
+
       </div>
       <Footer />
     </>

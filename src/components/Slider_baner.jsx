@@ -24,7 +24,7 @@ export const Slider_baner = ({ movielist }) => {
         {/* left slider button */}
             <button onClick={() => {
                 setIdx((prev) => prev === 0 ? slide_banner_length - 1 : prev - 1)
-            }} className="p-1 text-base active:scale-95 top-[35%] left-[0%] absolute cursor-pointer
+            }} className="p-1 text-base active:scale-95 top-[24%] left-[0%] absolute cursor-pointer
             md:top-[45%] md:text-3xl lg:text-4xl"><FaAngleLeft /></button>
 
             <div className="flex h-auto w-full"
@@ -36,21 +36,21 @@ export const Slider_baner = ({ movielist }) => {
                 {movielist.slice(0, 5).map((banner_list) => {
                     return (
 
-                        <div key={banner_list.id} className="relative h-[53vh] min-w-full top-16
+                        <div key={banner_list.id} className="relative h-[33vh] min-w-full top-16
                         md:h-[73vh] ">
                             <img src={`https://image.tmdb.org/t/p/w1280${banner_list.backdrop_path}`} alt="movie banner"
-                                className="w-full h-[84vh] object-cover 
+                                className="w-full h-[34vh] object-cover 
                                 md:h-[73vh]" />
 
                             {/* Play Button */}
                             <button
                                 className="absolute top-[44%]  left-1/2 -translate-x-1/2 -translate-y-1/2
-                                 bg-white/80 p-5 rounded-full text-black text-2xl
+                                 bg-white/80 p-5 rounded-full text-black text-[1rem]
                                  hover:bg-white active:scale-95 cursor-pointer"
                             >
                                 <FaPlay />
                             </button>
-                            <h1 className="absolute bottom-15 left-5 text-2xl text-white font-bold">{banner_list.title}</h1>
+                            <h1 className="absolute bottom-15 left-5 text-[1.2rem] text-white font-bold">{banner_list.title}</h1>
                         </div>
                     );
                 })}
@@ -61,7 +61,7 @@ export const Slider_baner = ({ movielist }) => {
                 () => {
                     setIdx((prev) => (prev + 1) % slide_banner_length)
                 }
-            } className="p-1 text-base active:scale-95 top-[35%] right-[0%] absolute cursor-pointer
+            } className="p-1 text-base active:scale-95 top-[24%] right-[0%] absolute cursor-pointer
             md:top-[45%]  md:text-3xl lg:text-4xl"><FaChevronRight /></button>
 
         </>
